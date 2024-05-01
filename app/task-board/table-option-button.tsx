@@ -9,9 +9,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Ellipsis } from 'lucide-react';
 import { deleteTask } from '@/lib/action';
-import { DialogTrigger } from '@/components/ui/dialog';
+import { useRouter } from 'next/navigation';
 
 export default function TableOptionButton({ id }: { id: string }) {
+	const router = useRouter();
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -20,11 +22,7 @@ export default function TableOptionButton({ id }: { id: string }) {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
-				<DropdownMenuItem>
-					<DialogTrigger asChild>
-						<button>Edit</button>
-					</DialogTrigger>
-				</DropdownMenuItem>
+				<DropdownMenuItem onClick={() => router.push('/task-board/new')}>Edit</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => deleteTask(id)}>Delete</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
