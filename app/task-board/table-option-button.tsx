@@ -9,8 +9,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Ellipsis } from 'lucide-react';
 import { deleteTask } from '@/lib/action';
+import { DialogTrigger } from '@/components/ui/dialog';
 
-export default function TableOptionButton({ id }) {
+export default function TableOptionButton({ id }: { id: string }) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -19,7 +20,11 @@ export default function TableOptionButton({ id }) {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
-				<DropdownMenuItem onClick={() => deleteTask(id)}>Edit</DropdownMenuItem>
+				<DropdownMenuItem>
+					<DialogTrigger asChild>
+						<button>Edit</button>
+					</DialogTrigger>
+				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => deleteTask(id)}>Delete</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

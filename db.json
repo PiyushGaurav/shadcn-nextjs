@@ -1,36 +1,6 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Implement user authentication",
-      "status": "In Progress",
-      "priority": "High"
-    },
-    {
-      "id": "2",
-      "title": "Design database schema",
-      "status": "Backlog",
-      "priority": "Medium"
-    },
-    {
-      "id": "3",
-      "title": "Create UI wireframes",
-      "status": "Todo",
-      "priority": "Medium"
-    },
-    {
-      "id": "4",
-      "title": "Fix bugs in the backend code",
-      "status": "In Progress",
-      "priority": "High"
-    },
-    {
-      "id": "5",
-      "title": "Write API documentation",
-      "status": "Done",
-      "priority": "Low"
-    },
-    {
       "id": "6",
       "title": "Refactor CSS code",
       "status": "In Progress",
@@ -57,12 +27,6 @@
     {
       "id": "10",
       "title": "Write unit tests for API endpoints",
-      "status": "Todo",
-      "priority": "Medium"
-    },
-    {
-      "id": "05e1",
-      "title": "Add tailwind config",
       "status": "Todo",
       "priority": "Medium"
     },

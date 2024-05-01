@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
-import TableOptionButton from '@/components/custom/table-option-button';
+import TableOptionButton from '@/app/task-board/table-option-button';
 
 export type Task = {
 	id: string;
@@ -51,6 +51,7 @@ export default async function TaskTable() {
 					</TableHead>
 					<TableHead>Status</TableHead>
 					<TableHead>Priority</TableHead>
+					<TableHead></TableHead>
 				</TableRow>
 			</TableHeader>
 			<TableBody>

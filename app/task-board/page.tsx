@@ -27,10 +27,10 @@ export default function TaskBoard() {
 					</DialogHeader>
 					<TaskForm />
 				</DialogContent>
+				<div className="border rounded-md my-4">
+					<TaskTable />
+				</div>
 			</Dialog>
-			<div className="border rounded-md my-4">
-				<TaskTable />
-			</div>
 		</div>
 	);
 }
