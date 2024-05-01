@@ -12,10 +12,20 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { createTask } from '@/lib/action';
+import { createTask, deleteTask } from '@/lib/action';
 import { revalidatePath } from 'next/cache';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
+import {
+	ArrowUp,
+	ArrowDown,
+	ArrowRight,
+	Circle,
+	CircleCheck,
+	CircleHelp,
+	CircleX,
+	Timer,
+	Ellipsis
+} from 'lucide-react';
 import {
 	Select,
 	SelectContent,
@@ -25,6 +35,7 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '@/components/ui/select';
+import TableOptionButton from '@/components/custom/table-option-button';
 
 type Task = {
 	title: string | null;
@@ -37,7 +48,7 @@ export default async function TaskBoard() {
 	const response = await fetch('http://localhost:3000/tasks');
 	const tasks = await response.json();
 
-	const renderStatusIcon = status => {
+	const renderStatusIcon = (status: string) => {
 		switch (status) {
 			case 'Canceled':
 				return <CircleX />;
@@ -52,7 +63,7 @@ export default async function TaskBoard() {
 		}
 	};
 
-	const renderPriorityIcon = priority => {
+	const renderPriorityIcon = (priority: string) => {
 		switch (priority) {
 			case 'High':
 				return <ArrowUp />;
@@ -144,7 +155,7 @@ export default async function TaskBoard() {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{tasks.map(({ title, description, status, priority }: Task) => (
+						{tasks.map(({ id, title, description, status, priority }: Task) => (
 							<TableRow key={title}>
 								<TableCell>
 									<div className="flex gap-2 items-center">
@@ -163,6 +174,9 @@ export default async function TaskBoard() {
 										{renderPriorityIcon(priority)}
 										{priority}
 									</div>
+								</TableCell>
+								<TableCell className="max-w-[20px] items-center">
+									<TableOptionButton id={id} />
 								</TableCell>
 							</TableRow>
 						))}
