@@ -1,24 +1,64 @@
 {
   "tasks": [
     {
-      "title": "Build",
-      "description": "Build the app",
-      "id": "305a"
+      "id": "1",
+      "title": "Implement user authentication",
+      "status": "In Progress",
+      "priority": "High"
     },
     {
-      "title": "Laundry",
-      "description": "Do laundry",
-      "id": "54c4"
+      "id": "2",
+      "title": "Design database schema",
+      "status": "Backlog",
+      "priority": "Medium"
     },
     {
-      "title": "Meet",
-      "description": "Meet with boss",
-      "id": "44ab"
+      "id": "3",
+      "title": "Create UI wireframes",
+      "status": "Todo",
+      "priority": "Medium"
     },
     {
-      "id": "140a",
-      "title": "Workout",
-      "description": "legs day"
+      "id": "4",
+      "title": "Fix bugs in the backend code",
+      "status": "In Progress",
+      "priority": "High"
+    },
+    {
+      "id": "5",
+      "title": "Write API documentation",
+      "status": "Done",
+      "priority": "Low"
+    },
+    {
+      "id": "6",
+      "title": "Refactor CSS code",
+      "status": "In Progress",
+      "priority": "Medium"
+    },
+    {
+      "id": "7",
+      "title": "Test frontend components",
+      "status": "Backlog",
+      "priority": "Low"
+    },
+    {
+      "id": "8",
+      "title": "Deploy to staging environment",
+      "status": "Todo",
+      "priority": "High"
+    },
+    {
+      "id": "9",
+      "title": "Optimize database queries",
+      "status": "Backlog",
+      "priority": "High"
+    },
+    {
+      "id": "10",
+      "title": "Write unit tests for API endpoints",
+      "status": "Todo",
+      "priority": "Medium"
     }
   ]
 }

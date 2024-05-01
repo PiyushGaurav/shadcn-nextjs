@@ -18,6 +18,8 @@ import { revalidatePath } from 'next/cache';
 type Task = {
 	title: string | null;
 	description: string | null;
+	status: string | null;
+	priority: number | null;
 };
 
 export default async function TaskBoard() {
@@ -47,12 +49,17 @@ export default async function TaskBoard() {
 							<Input id="title" name="title" className="col-span-3" />
 						</div>
 						<div className="grid grid-cols-4 items-center gap-4">
-							<Label htmlFor="description" className="text-right">
-								Description
+							<Label htmlFor="status" className="text-right">
+								Status
 							</Label>
-							<Input id="description" name="description" className="col-span-3" />
+							<Input id="status" name="status" className="col-span-3" />
 						</div>
-
+						<div className="grid grid-cols-4 items-center gap-4">
+							<Label htmlFor="priority" className="text-right">
+								Priority
+							</Label>
+							<Input id="priority" name="priority" className="col-span-3" />
+						</div>
 						<DialogFooter>
 							<DialogClose asChild>
 								<Button type="submit">Save</Button>
@@ -66,14 +73,16 @@ export default async function TaskBoard() {
 					<TableHeader>
 						<TableRow>
 							<TableHead>Title</TableHead>
-							<TableHead>Description</TableHead>
+							<TableHead>Status</TableHead>
+							<TableHead>Priority</TableHead>
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{tasks.map(({ title, description }: Task) => (
+						{tasks.map(({ title, description, status, priority }: Task) => (
 							<TableRow key={title}>
 								<TableCell>{title}</TableCell>
-								<TableCell>{description}</TableCell>
+								<TableCell>{status}</TableCell>
+								<TableCell>{priority}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>

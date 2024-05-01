@@ -7,8 +7,9 @@ export async function createTask(formData: FormData) {
 	'use server';
 
 	const title = formData.get('title');
-	const description = formData.get('description');
-	if (!title || !description) return null;
+	const status = formData.get('status');
+	const priority = formData.get('priority');
+	if (!title || !status || !priority) return null;
 	fetch('http://localhost:3000/tasks', {
 		method: 'POST',
 		headers: {
@@ -16,7 +17,8 @@ export async function createTask(formData: FormData) {
 		},
 		body: JSON.stringify({
 			title: formData.get('title'),
-			description: formData.get('description')
+			status: formData.get('status'),
+			priority: formData.get('priority')
 		})
 	})
 		.then(response => {
