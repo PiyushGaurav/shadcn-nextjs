@@ -12,6 +12,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { createTask } from '@/lib/action';
 import { revalidatePath } from 'next/cache';
 
 type Task = {
@@ -23,26 +24,6 @@ export default async function TaskBoard() {
 	const response = await fetch('http://localhost:3000/tasks');
 	const tasks = await response.json();
 
-	const createTask = async (formData: FormData) => {
-		'use server';
-		fetch('http://localhost:3000/tasks', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				title: formData.get('title'),
-				description: formData.get('description')
-			})
-		})
-			.then(response => {
-				response.json();
-			})
-			.then(response => {
-				console.log(response);
-				revalidatePath('/task-board');
-			});
-	};
 	return (
 		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
 			<Dialog>
@@ -74,7 +55,7 @@ export default async function TaskBoard() {
 
 						<DialogFooter>
 							<DialogClose asChild>
-								<Button type="submit">Save changes</Button>
+								<Button type="submit">Save</Button>
 							</DialogClose>
 						</DialogFooter>
 					</form>
