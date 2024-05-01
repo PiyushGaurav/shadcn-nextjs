@@ -59,6 +59,18 @@
       "title": "Write unit tests for API endpoints",
       "status": "Todo",
       "priority": "Medium"
+    },
+    {
+      "id": "05e1",
+      "title": "Add tailwind config",
+      "status": "Todo",
+      "priority": "Medium"
+    },
+    {
+      "id": "e5ed",
+      "title": "Add shadcn UI package",
+      "status": "In Progress",
+      "priority": "High"
     }
   ]
 }

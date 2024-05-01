@@ -16,6 +16,15 @@ import { createTask } from '@/lib/action';
 import { revalidatePath } from 'next/cache';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue
+} from '@/components/ui/select';
 
 type Task = {
 	title: string | null;
@@ -58,7 +67,7 @@ export default async function TaskBoard() {
 		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
 			<Dialog>
 				<div className="flex w-full justify-between items-center">
-					<h1 className="text-5xl font-bold">Task Board</h1>
+					<h1 className="text-7xl font-bold">Task Board</h1>
 					<DialogTrigger asChild>
 						<Button variant="outline">Add Task</Button>
 					</DialogTrigger>
@@ -80,13 +89,37 @@ export default async function TaskBoard() {
 							<Label htmlFor="status" className="text-right">
 								Status
 							</Label>
-							<Input id="status" name="status" className="col-span-3" />
+							<Select name="status">
+								<SelectTrigger className="col-span-3">
+									<SelectValue placeholder="Select Status" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectGroup>
+										<SelectItem value="Canceled">Canceled</SelectItem>
+										<SelectItem value="Todo">Todo</SelectItem>
+										<SelectItem value="In Progress">In Progress</SelectItem>
+										<SelectItem value="Backlog">Backlog</SelectItem>
+										<SelectItem value="Done">Done</SelectItem>
+									</SelectGroup>
+								</SelectContent>
+							</Select>
 						</div>
 						<div className="grid grid-cols-4 items-center gap-4">
 							<Label htmlFor="priority" className="text-right">
 								Priority
 							</Label>
-							<Input id="priority" name="priority" className="col-span-3" />
+							<Select name="priority">
+								<SelectTrigger className="col-span-3">
+									<SelectValue placeholder="Select Priority" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectGroup>
+										<SelectItem value="Low">Low</SelectItem>
+										<SelectItem value="Medium">Medium</SelectItem>
+										<SelectItem value="High">High</SelectItem>
+									</SelectGroup>
+								</SelectContent>
+							</Select>
 						</div>
 						<DialogFooter>
 							<DialogClose asChild>
