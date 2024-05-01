@@ -14,6 +14,8 @@ import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { createTask } from '@/lib/action';
 import { revalidatePath } from 'next/cache';
+import { Checkbox } from '@/components/ui/checkbox';
+import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
 
 type Task = {
 	title: string | null;
@@ -25,6 +27,32 @@ type Task = {
 export default async function TaskBoard() {
 	const response = await fetch('http://localhost:3000/tasks');
 	const tasks = await response.json();
+
+	const renderStatusIcon = status => {
+		switch (status) {
+			case 'Canceled':
+				return <CircleX />;
+			case 'In Progress':
+				return <Timer />;
+			case 'Backlog':
+				return <CircleHelp />;
+			case 'Done':
+				return <CircleCheck />;
+			default:
+				return <Circle />;
+		}
+	};
+
+	const renderPriorityIcon = priority => {
+		switch (priority) {
+			case 'High':
+				return <ArrowUp />;
+			case 'Low':
+				return <ArrowDown />;
+			default:
+				return <ArrowRight />;
+		}
+	};
 
 	return (
 		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
@@ -72,7 +100,12 @@ export default async function TaskBoard() {
 				<Table className="overflow-hidden">
 					<TableHeader>
 						<TableRow>
-							<TableHead>Title</TableHead>
+							<TableHead>
+								<div className="flex gap-2 items-center">
+									<Checkbox id="terms" />
+									Title
+								</div>
+							</TableHead>
 							<TableHead>Status</TableHead>
 							<TableHead>Priority</TableHead>
 						</TableRow>
@@ -80,9 +113,24 @@ export default async function TaskBoard() {
 					<TableBody>
 						{tasks.map(({ title, description, status, priority }: Task) => (
 							<TableRow key={title}>
-								<TableCell>{title}</TableCell>
-								<TableCell>{status}</TableCell>
-								<TableCell>{priority}</TableCell>
+								<TableCell>
+									<div className="flex gap-2 items-center">
+										<Checkbox id="task" />
+										{title}
+									</div>
+								</TableCell>
+								<TableCell>
+									<div className="flex gap-2 items-center">
+										{renderStatusIcon(status)}
+										{status}
+									</div>
+								</TableCell>
+								<TableCell>
+									<div className="flex gap-2 items-center">
+										{renderPriorityIcon(priority)}
+										{priority}
+									</div>
+								</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
