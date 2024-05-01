@@ -11,19 +11,21 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
-import ThemeButton from './ui/theme-button';
+import ThemeButton from './theme-button';
 export default function NavBar() {
 	return (
 		<NavigationMenu className="flex justify-between max-w-full p-4 text-center px-4 border-b-2 border-inherit">
-			<h1>Shadcn</h1>
+			<Link href="/" legacyBehavior passHref>
+				<h1 className="font-bold text-xl">Shadcn</h1>
+			</Link>
 			<NavigationMenuList>
 				<NavigationMenuItem className="ml-2">
-					<Link href="/docs" legacyBehavior passHref>
+					<Link href="/job-listing" legacyBehavior passHref>
 						<NavigationMenuLink className={navigationMenuTriggerStyle()}>Job Listing</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
 				<NavigationMenuItem className="ml-2">
-					<Link href="/docs" legacyBehavior passHref>
+					<Link href="/task-board" legacyBehavior passHref>
 						<NavigationMenuLink className={navigationMenuTriggerStyle()}>Task Board</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
