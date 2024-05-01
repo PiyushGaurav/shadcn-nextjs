@@ -12,6 +12,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { revalidatePath } from 'next/cache';
 
 type Task = {
 	title: string | null;
@@ -21,6 +22,27 @@ type Task = {
 export default async function TaskBoard() {
 	const response = await fetch('http://localhost:3000/tasks');
 	const tasks = await response.json();
+
+	const createTask = async (formData: FormData) => {
+		'use server';
+		fetch('http://localhost:3000/tasks', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				title: formData.get('title'),
+				description: formData.get('description')
+			})
+		})
+			.then(response => {
+				response.json();
+			})
+			.then(response => {
+				console.log(response);
+				revalidatePath('/task-board');
+			});
+	};
 	return (
 		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
 			<Dialog>
@@ -36,23 +58,18 @@ export default async function TaskBoard() {
 						<DialogTitle>Add Task</DialogTitle>
 						<DialogDescription>Add new task to to task board. Click save when you're done.</DialogDescription>
 					</DialogHeader>
-					<form className="grid gap-4 py-4">
+					<form action={createTask} className="grid gap-4 py-4">
 						<div className="grid grid-cols-4 items-center gap-4">
 							<Label htmlFor="title" className="text-right">
 								Title
 							</Label>
-							<Input id="title" name="title" value="Work on bugfix" className="col-span-3" />
+							<Input id="title" name="title" className="col-span-3" />
 						</div>
 						<div className="grid grid-cols-4 items-center gap-4">
 							<Label htmlFor="description" className="text-right">
 								Description
 							</Label>
-							<Input
-								id="description"
-								name="description"
-								value="Work on production and UI bug fix"
-								className="col-span-3"
-							/>
+							<Input id="description" name="description" className="col-span-3" />
 						</div>
 
 						<DialogFooter>
