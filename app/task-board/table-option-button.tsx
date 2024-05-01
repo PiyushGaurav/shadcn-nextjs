@@ -22,7 +22,13 @@ export default function TableOptionButton({ id }: { id: string }) {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end">
-				<DropdownMenuItem onClick={() => router.push('/task-board/new')}>Edit</DropdownMenuItem>
+				<DropdownMenuItem
+					onClick={() => {
+						router.push(`/task-board/${id}`);
+					}}
+				>
+					Edit
+				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => deleteTask(id)}>Delete</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

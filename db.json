@@ -2,9 +2,9 @@
   "tasks": [
     {
       "id": "6",
-      "title": "Refactor CSS code",
-      "status": "In Progress",
-      "priority": "Medium"
+      "title": "Refactor CSS code edit",
+      "status": "Canceled",
+      "priority": "Low"
     },
     {
       "id": "7",
@@ -35,12 +35,6 @@
       "title": "Add shadcn UI package",
       "status": "In Progress",
       "priority": "High"
-    },
-    {
-      "id": "ed17",
-      "title": "lkkkkkkk",
-      "status": "In Progress",
-      "priority": "Medium"
     }
   ]
 }
