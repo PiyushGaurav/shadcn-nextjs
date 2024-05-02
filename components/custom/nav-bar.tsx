@@ -14,7 +14,7 @@ import {
 import ThemeButton from './theme-button';
 export default function NavBar() {
 	return (
-		<NavigationMenu className="flex justify-between max-w-full p-4 text-center px-4 border-b-2 border-inherit">
+		<NavigationMenu className="flex justify-between max-w-full py-4 px-16 text-center border-b-2 border-inherit">
 			<Link href="/" legacyBehavior passHref>
 				<h1 className="font-bold text-xl">Shadcn</h1>
 			</Link>
