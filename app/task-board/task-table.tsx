@@ -42,12 +42,12 @@ export default async function TaskTable() {
 		<Table className="overflow-hidden">
 			<TableHeader>
 				<TableRow>
-					<TableHead>
+					<TableHead className="ml-2">
 						<div className="flex gap-2 items-center">Title</div>
 					</TableHead>
-					<TableHead>Status</TableHead>
-					<TableHead>Priority</TableHead>
-					<TableHead></TableHead>
+					<TableHead className="pl-10">Status</TableHead>
+					<TableHead className="pl-10">Priority</TableHead>
+					<TableHead className="text-right pr-10">Action</TableHead>
 				</TableRow>
 			</TableHeader>
 
@@ -69,7 +69,7 @@ export default async function TaskTable() {
 								{priority}
 							</div>
 						</TableCell>
-						<TableCell className="max-w-[30px] items-center">
+						<TableCell className="flex gap-2 items-center justify-end">
 							<TableOptionButton id={id} />
 						</TableCell>
 					</TableRow>
