@@ -1,26 +1,23 @@
 'use server';
 
-import { Task } from '@/types/task';
-import { revalidatePath } from 'next/cache';
+import { prisma } from '@/db';
 import { redirect } from 'next/navigation';
 
-export default async function createTask(data: Task) {
+export default async function createTask(data: FormData) {
 	'use server';
+	const title = data.get('title') as string;
+	const status = (data.get('status') as string) || 'Todo';
+	const priority = (data.get('priority') as string) || 'Low';
+	if (title.length == 0) {
+		throw new Error('Invalid Title');
+	}
 
-	const { title, status, priority } = data;
-	if (!title) return null;
-	await fetch('http://localhost:3000/tasks', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
+	await prisma.task.create({
+		data: {
 			title,
 			status,
 			priority
-		})
+		}
 	});
-
-	revalidatePath('/task-board', 'layout');
 	redirect('/task-board');
 }

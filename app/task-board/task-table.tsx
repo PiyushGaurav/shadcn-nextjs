@@ -3,10 +3,10 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
 import TableOptionButton from '@/app/task-board/table-option-button';
 import { Task } from '@/types/task';
+import { prisma } from '@/db';
 
 export default async function TaskTable() {
-	const response = await fetch('http://localhost:3000/tasks');
-	const tasks = await response.json();
+	const tasks = await prisma.task.findMany();
 
 	const renderStatusIcon = (status: string | null) => {
 		switch (status) {
@@ -33,6 +33,11 @@ export default async function TaskTable() {
 				return <ArrowRight />;
 		}
 	};
+
+	if (tasks.length == 0) {
+		return <p className="p-4 text-center">No Task Found! Try to add more Task.</p>;
+	}
+
 	return (
 		<Table className="overflow-hidden">
 			<TableHeader>
@@ -48,6 +53,7 @@ export default async function TaskTable() {
 					<TableHead></TableHead>
 				</TableRow>
 			</TableHeader>
+
 			<TableBody>
 				{tasks.map(({ id, title, status, priority }: Task) => (
 					<TableRow key={title}>

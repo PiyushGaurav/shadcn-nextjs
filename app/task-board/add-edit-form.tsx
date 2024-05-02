@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,31 +12,20 @@ import {
 	SelectValue
 } from '@/components/ui/select';
 import Link from 'next/link';
+import { Task } from '@/types/task';
 import createTask from '@/actions/createTask';
 import updateTask from '@/actions/updateTask';
-import { Task } from '@/types/task';
 
 type ThisProp = {
 	data?: Task | undefined;
 };
 
-const AddEditForm: React.FC<{ data: Task }> = (props: ThisProp) => {
+const AddEditForm: React.FC<ThisProp> = props => {
 	const isAddMode = !props.data;
 
-	function onSubmit(formData: FormData) {
-		const title: string = (formData.get('title') as string) || '';
-		const status: string = (formData.get('status') as string) || 'Todo';
-		const priority: string = (formData.get('priority') as string) || 'Low';
-		console.log('AddEditForm onSubmit', { title, status, priority });
-		if (!title) return;
-		const data: Task = {
-			id: crypto.randomUUID(),
-			title,
-			status,
-			priority
-		};
-		const id: string | undefined = props.data?.id;
-		return isAddMode ? createTask(data) : updateTask(id, data);
+	async function onSubmit(formData: FormData) {
+		'use server';
+		return isAddMode ? createTask(formData) : updateTask(props.data?.id, formData);
 	}
 
 	return (
@@ -81,7 +70,7 @@ const AddEditForm: React.FC<{ data: Task }> = (props: ThisProp) => {
 			</div>
 
 			<div className="flex w-full justify-end gap-4">
-				<Link href="/task-board" legacyBehavior passHref>
+				<Link href=".." legacyBehavior passHref>
 					<Button type="submit" variant="secondary">
 						Cancel
 					</Button>

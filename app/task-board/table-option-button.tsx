@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 import { Ellipsis } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import deleteTask from '@/actions/deleteTask';
-
 interface Props {
 	id: string;
 }
