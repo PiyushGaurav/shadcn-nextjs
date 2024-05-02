@@ -16,12 +16,12 @@ export default function NavBar() {
 	return (
 		<NavigationMenu className="flex justify-between max-w-full py-4 px-16 text-center border-b-2 border-inherit">
 			<Link href="/" legacyBehavior passHref>
-				<h1 className="font-bold text-xl">Shadcn</h1>
+				<h1 className="font-bold text-xl">shadcn/ui</h1>
 			</Link>
 			<NavigationMenuList>
 				<NavigationMenuItem className="ml-2">
-					<Link href="/job-listing" legacyBehavior passHref>
-						<NavigationMenuLink className={navigationMenuTriggerStyle()}>Job Listing</NavigationMenuLink>
+					<Link href="/home" legacyBehavior passHref>
+						<NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
 				<NavigationMenuItem className="ml-2">
