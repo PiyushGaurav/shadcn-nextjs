@@ -1,10 +1,13 @@
+import { Skeleton } from '@/components/ui/skeleton';
 import React from 'react';
 
 export default function Loading() {
 	return (
-		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
-			<div className="flex flex-col w-full justify-between items-center">
-				<h1 className="text-7xl font-bold my-10">Loading...</h1>
+		<div className="flex flex-col space-y-3 justify-center items-center h-screen">
+			<Skeleton className="h-[125px] w-[250px] rounded-xl" />
+			<div className="space-y-2">
+				<Skeleton className="h-4 w-[250px]" />
+				<Skeleton className="h-4 w-[200px]" />
 			</div>
 		</div>
 	);

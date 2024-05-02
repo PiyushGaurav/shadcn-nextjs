@@ -47,7 +47,7 @@ export default async function TaskTable() {
 					</TableHead>
 					<TableHead className="pl-10">Status</TableHead>
 					<TableHead className="pl-10">Priority</TableHead>
-					<TableHead className="text-right pr-10">Action</TableHead>
+					<TableHead className="text-right">Action</TableHead>
 				</TableRow>
 			</TableHeader>
 
@@ -69,7 +69,7 @@ export default async function TaskTable() {
 								{priority}
 							</div>
 						</TableCell>
-						<TableCell className="flex gap-2 items-center justify-end">
+						<TableCell className="flex gap-2 items-center justify-end w-max-[50x]">
 							<TableOptionButton id={id} />
 						</TableCell>
 					</TableRow>
