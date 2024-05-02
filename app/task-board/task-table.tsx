@@ -75,7 +75,7 @@ export default async function TaskTable() {
 								{priority}
 							</div>
 						</TableCell>
-						<TableCell className="max-w-[20px] items-center">
+						<TableCell className="max-w-[30px] items-center">
 							<TableOptionButton id={id} />
 						</TableCell>
 					</TableRow>

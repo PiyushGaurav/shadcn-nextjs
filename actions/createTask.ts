@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/db';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export default async function createTask(data: FormData) {
@@ -19,5 +20,6 @@ export default async function createTask(data: FormData) {
 			priority
 		}
 	});
+	revalidatePath('/task-board', 'layout');
 	redirect('/task-board');
 }

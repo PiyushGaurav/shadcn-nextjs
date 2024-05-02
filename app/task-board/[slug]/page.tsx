@@ -1,7 +1,8 @@
 import { prisma } from '@/db';
 import AddEditForm from '../add-edit-form';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
-export default async function Task({ params }) {
+const Task: React.FC<{ params: Params }> = async ({ params }) => {
 	const task = await prisma.task.findUnique({
 		where: {
 			id: params.slug
@@ -14,4 +15,6 @@ export default async function Task({ params }) {
 			<AddEditForm data={task} />
 		</div>
 	);
-}
+};
+
+export default Task;

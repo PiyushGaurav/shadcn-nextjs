@@ -17,7 +17,7 @@ import createTask from '@/actions/createTask';
 import updateTask from '@/actions/updateTask';
 
 type ThisProp = {
-	data?: Task | undefined;
+	data?: Task | null | undefined;
 };
 
 const AddEditForm: React.FC<ThisProp> = props => {
