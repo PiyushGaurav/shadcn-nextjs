@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import React from 'react';
 import Link from 'next/link';
 
-export default function Home() {
+const Home: React.FC = () => {
 	return (
 		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
 			<div className="flex flex-col w-full justify-between items-center">
@@ -18,4 +18,6 @@ export default function Home() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Home;

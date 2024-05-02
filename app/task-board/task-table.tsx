@@ -2,13 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
 import TableOptionButton from '@/app/task-board/table-option-button';
-
-export type Task = {
-	id: string;
-	title: string | null;
-	status: string | null;
-	priority: string | null;
-};
+import { Task } from '@/types/task';
 
 export default async function TaskTable() {
 	const response = await fetch('http://localhost:3000/tasks');

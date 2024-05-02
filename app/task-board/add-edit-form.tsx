@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { createTask, updateTask } from '@/lib/action';
 import {
 	Select,
 	SelectContent,
@@ -13,33 +12,33 @@ import {
 	SelectValue
 } from '@/components/ui/select';
 import Link from 'next/link';
-
-type Task = {
-	id: string;
-	title: string;
-	status: string;
-	priority: string;
-};
+import createTask from '@/actions/createTask';
+import updateTask from '@/actions/updateTask';
+import { Task } from '@/types/task';
 
 type ThisProp = {
-	data?: Task | null;
+	data?: Task | undefined;
 };
 
-const AddEditForm = (props: ThisProp) => {
+const AddEditForm: React.FC<{ data: Task }> = (props: ThisProp) => {
 	const isAddMode = !props.data;
 
 	function onSubmit(formData: FormData) {
-		const title = formData.get('title');
-		const status = formData.get('status') || 'Todo';
-		const priority = formData.get('priority') || 'Low';
+		const title: string = (formData.get('title') as string) || '';
+		const status: string = (formData.get('status') as string) || 'Todo';
+		const priority: string = (formData.get('priority') as string) || 'Low';
 		console.log('AddEditForm onSubmit', { title, status, priority });
 		if (!title) return;
-		return isAddMode
-			? createTask({ title, status, priority })
-			: updateTask(props.data?.id, { title, status, priority });
+		const data: Task = {
+			id: crypto.randomUUID(),
+			title,
+			status,
+			priority
+		};
+		const id: string | undefined = props.data?.id;
+		return isAddMode ? createTask(data) : updateTask(id, data);
 	}
 
-	console.log('AddEditForm', props.data);
 	return (
 		<form action={onSubmit} className="grid gap-4 py-10">
 			<div className="grid grid-cols-4 items-center gap-4">

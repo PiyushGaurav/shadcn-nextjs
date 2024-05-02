@@ -9,8 +9,8 @@
     {
       "id": "7",
       "title": "Test frontend components",
-      "status": "Backlog",
-      "priority": "Low"
+      "status": "Done",
+      "priority": "Medium"
     },
     {
       "id": "8",
@@ -26,13 +26,7 @@
     },
     {
       "id": "10",
-      "title": "Write unit tests for API endpoints",
-      "status": "Todo",
-      "priority": "Medium"
-    },
-    {
-      "id": "e5ed",
-      "title": "Add shadcn UI package",
+      "title": "Write unit tests for API",
       "status": "In Progress",
       "priority": "High"
     }

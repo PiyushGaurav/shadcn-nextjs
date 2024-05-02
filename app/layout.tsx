@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -12,19 +13,21 @@ export const metadata: Metadata = {
 	description: 'Created by Piyush'
 };
 
-export default function RootLayout({
-	children
-}: Readonly<{
+interface Props {
 	children: React.ReactNode;
-}>) {
+}
+
+const RootLayout: React.FC<Props> = props => {
 	return (
 		<html lang="en">
 			<body className={cn('min-h-screen w-full bg-background', inter.className)}>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<NavBar />
-					{children}
+					{props.children}
 				</ThemeProvider>
 			</body>
 		</html>
 	);
-}
+};
+
+export default RootLayout;

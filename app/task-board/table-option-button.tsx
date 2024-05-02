@@ -8,10 +8,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Ellipsis } from 'lucide-react';
-import { deleteTask } from '@/lib/action';
 import { useRouter } from 'next/navigation';
+import deleteTask from '@/actions/deleteTask';
 
-export default function TableOptionButton({ id }: { id: string }) {
+interface Props {
+	id: string;
+}
+
+const TableOptionButton: React.FC<Props> = ({ id }) => {
 	const router = useRouter();
 
 	return (
@@ -33,4 +37,6 @@ export default function TableOptionButton({ id }: { id: string }) {
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
-}
+};
+
+export default TableOptionButton;
