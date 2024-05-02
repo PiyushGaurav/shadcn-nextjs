@@ -43,10 +43,7 @@ export default async function TaskTable() {
 			<TableHeader>
 				<TableRow>
 					<TableHead>
-						<div className="flex gap-2 items-center">
-							<Checkbox id="terms" />
-							Title
-						</div>
+						<div className="flex gap-2 items-center">Title</div>
 					</TableHead>
 					<TableHead>Status</TableHead>
 					<TableHead>Priority</TableHead>
@@ -58,10 +55,7 @@ export default async function TaskTable() {
 				{tasks.map(({ id, title, status, priority }: Task) => (
 					<TableRow key={title}>
 						<TableCell>
-							<div className="flex gap-2 items-center">
-								<Checkbox id="task" />
-								{title}
-							</div>
+							<div className="flex gap-2 items-center">{title}</div>
 						</TableCell>
 						<TableCell>
 							<div className="flex gap-2 items-center">
