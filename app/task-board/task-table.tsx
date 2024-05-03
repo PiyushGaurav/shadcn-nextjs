@@ -39,7 +39,7 @@ export default async function TaskTable() {
 	}
 
 	return (
-		<Table className="overflow-hidden">
+		<Table>
 			<TableHeader>
 				<TableRow>
 					<TableHead className="ml-2">

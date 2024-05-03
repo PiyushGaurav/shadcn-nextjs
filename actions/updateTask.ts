@@ -20,5 +20,5 @@ export default async function updateTask(id: string | undefined, data: FormData)
 		}
 	});
 	revalidatePath('/task-board', 'layout');
-	redirect('/task-board');
+	redirect('/');
 }
