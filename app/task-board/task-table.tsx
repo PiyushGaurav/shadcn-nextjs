@@ -7,7 +7,9 @@ import { prisma } from '@/db';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getTaskCached } from '@/actions/getTasks';
-import FilterButton from './filter-button';
+import { StatusFilterButton } from './status-filter-button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import PriorityFilterButton from './priority-filter-button';
 
 export default async function TaskTable({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 	const tasks = await getTaskCached(searchParams);
@@ -38,57 +40,58 @@ export default async function TaskTable({ searchParams }: { searchParams: { [key
 		}
 	};
 
-	if (tasks.length == 0) {
-		return <p className="p-4 text-center">No Task Found! Try to add more Task.</p>;
-	}
-
 	return (
-		<>
-			<div className="flex gap-2 justify-end">
-				<FilterButton />
+		<ScrollArea>
+			<div className="flex gap-2 justify-end items-center h-10">
+				<StatusFilterButton />
+				<PriorityFilterButton />
 				<Link href="/task-board/new" legacyBehavior passHref>
 					<Button variant="outline">Add Task</Button>
 				</Link>
 			</div>
 			<div className="border rounded-md my-4">
-				<Table>
-					<TableHeader>
-						<TableRow>
-							<TableHead className="ml-2">
-								<div className="flex gap-2 items-center">Title</div>
-							</TableHead>
-							<TableHead className="pl-10">Status</TableHead>
-							<TableHead className="pl-10">Priority</TableHead>
-							<TableHead className="text-right">Action</TableHead>
-						</TableRow>
-					</TableHeader>
-
-					<TableBody>
-						{tasks.map(({ id, title, status, priority }: Task) => (
-							<TableRow key={title}>
-								<TableCell>
-									<div className="flex gap-2 items-center">{title}</div>
-								</TableCell>
-								<TableCell>
-									<div className="flex gap-2 items-center">
-										{renderStatusIcon(status)}
-										{status}
-									</div>
-								</TableCell>
-								<TableCell>
-									<div className="flex gap-2 items-center">
-										{renderPriorityIcon(priority)}
-										{priority}
-									</div>
-								</TableCell>
-								<TableCell className="flex gap-2 items-center justify-end w-max-[50x]">
-									<TableOptionButton id={id} />
-								</TableCell>
+				{tasks.length == 0 ? (
+					<p className="p-4 text-center">No Task Found! Try to add more Task.</p>
+				) : (
+					<Table>
+						<TableHeader>
+							<TableRow>
+								<TableHead>
+									<div className="flex gap-2 items-center">Title</div>
+								</TableHead>
+								<TableHead>Status</TableHead>
+								<TableHead>Priority</TableHead>
+								<TableHead className="text-right pr-14">Action</TableHead>
 							</TableRow>
-						))}
-					</TableBody>
-				</Table>
+						</TableHeader>
+
+						<TableBody>
+							{tasks.map(({ id, title, status, priority }: Task) => (
+								<TableRow key={title}>
+									<TableCell>
+										<div className="flex gap-2 items-center">{title}</div>
+									</TableCell>
+									<TableCell>
+										<div className="flex gap-2 items-center">
+											{renderStatusIcon(status)}
+											{status}
+										</div>
+									</TableCell>
+									<TableCell>
+										<div className="flex gap-2 items-center">
+											{renderPriorityIcon(priority)}
+											{priority}
+										</div>
+									</TableCell>
+									<TableCell className="flex gap-4 items-center justify-end w-max-[50x]">
+										<TableOptionButton id={id} />
+									</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				)}
 			</div>
-		</>
+		</ScrollArea>
 	);
 }

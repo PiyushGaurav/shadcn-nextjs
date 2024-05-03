@@ -1,31 +1,32 @@
 import { prisma } from "@/db";
 import { cache } from "react";
+import { revalidatePath } from 'next/cache';
 
 async function getTasks(searchParams: { [key: string]: string | undefined }) {
 	let tasks = [];
-	console.log('GET TASK:', searchParams)
+
+	// let filterCondition: { priority: string }[] = [];
+	// if (searchParams.priority != '') {
+	// 	let priorities: string[] = searchParams.priority?.split(',') || [];
+	// 	priorities.forEach((p: string) => {
+	// 		filterCondition.push({ priority: p });
+	// 	});
+	// }
 
 
-	let filterCondition: { priority: string }[] = [];
-	if (searchParams.priority != '') {
-		let priorities: string[] = searchParams.priority?.split(',') || [];
-		priorities.forEach((p: string) => {
-			filterCondition.push({ priority: p });
-		});
-	}
-
-
-	if (filterCondition.length) {
+	if (!(searchParams.priority == undefined && searchParams.status == undefined)) {
 		tasks = await prisma.task.findMany({
 			where: {
-				OR: [
-					...filterCondition
-				]
+				AND: [
+					{ priority: searchParams.priority },
+					{ status: searchParams.status }
+				],
 			}
 		});
 	} else {
 		tasks = await prisma.task.findMany();
 	}
+	revalidatePath('/task-board', 'layout');
 	return tasks;
 }
 
