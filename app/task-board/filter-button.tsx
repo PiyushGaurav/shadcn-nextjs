@@ -69,7 +69,11 @@ const FilterButton: React.FC = () => {
 
 	useEffect(() => {
 		//do operation on state change
-		router.push(`/task-board?priority=${JSON.stringify(priority)}`);
+		let p = [];
+		if (priority.High) p.push('High');
+		if (priority.Medium) p.push('Medium');
+		if (priority.Low) p.push('Low');
+		router.push(`/task-board?priority=${p.toString()}`);
 	}, [priority, router]);
 
 	const onSelect = (key: keyof Priority) => {

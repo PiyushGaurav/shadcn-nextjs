@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { getTaskCached } from '@/actions/getTasks';
 import FilterButton from './filter-button';
 
-export default async function TaskTable({ filterBy }: { filterBy: string | undefined }) {
-	const tasks = await getTaskCached(filterBy);
+export default async function TaskTable({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+	const tasks = await getTaskCached(searchParams);
 
 	const renderStatusIcon = (status: string | null) => {
 		switch (status) {

@@ -1,21 +1,17 @@
 import { prisma } from "@/db";
 import { cache } from "react";
 
-async function getTasks(priorities: string | undefined) {
+async function getTasks(searchParams: { [key: string]: string | undefined }) {
 	let tasks = [];
+	console.log('GET TASK:', searchParams)
 
-	let filterCondition = [];
-	if (priorities != undefined) {
-		let { High, Medium, Low } = JSON.parse(priorities);
-		if (High) {
-			filterCondition.push({ priority: "High" });
-		}
-		if (Medium) {
-			filterCondition.push({ priority: "Medium" });
-		}
-		if (Low) {
-			filterCondition.push({ priority: "Low" });
-		}
+
+	let filterCondition: { priority: string }[] = [];
+	if (searchParams.priority != '') {
+		let priorities: string[] = searchParams.priority?.split(',') || [];
+		priorities.forEach((p: string) => {
+			filterCondition.push({ priority: p });
+		});
 	}
 
 

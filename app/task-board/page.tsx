@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/breadcrumb';
 
 export default async function TaskBoard({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
-	console.log('PAGE', searchParams.priority);
+	console.log('PAGE', searchParams);
 
 	return (
 		<div className="flex flex-col m-4 max-w-screen-xl px-4 mx-auto">
@@ -24,11 +24,10 @@ export default async function TaskBoard({ searchParams }: { searchParams: { [key
 					<BreadcrumbSeparator />
 				</BreadcrumbList>
 			</Breadcrumb>
-
 			<div className="flex w-full justify-between items-center">
 				<h1 className="text-7xl font-bold">Task Board</h1>
 			</div>
-			<TaskTable filterBy={searchParams.priority} />
+			<TaskTable searchParams={searchParams} />
 		</div>
 	);
 }
