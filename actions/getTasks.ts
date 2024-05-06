@@ -1,8 +1,9 @@
 import { prisma } from '@/db';
 import { cache } from 'react';
 import { revalidatePath } from 'next/cache';
+import { Task } from '@/types/task';
 
-async function getTasks(searchParams: { [key: string]: string | undefined }) {
+const getTasks = async function (searchParams: { [key: string]: string | undefined }): Promise<Task[]> {
 	let tasks = [];
 
 	// let filterCondition: { priority: string }[] = [];
@@ -29,6 +30,6 @@ async function getTasks(searchParams: { [key: string]: string | undefined }) {
 
 	revalidatePath('/task-board', 'layout');
 	return tasks;
-}
+};
 
 export const getTaskCached = cache(getTasks);

@@ -1,9 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
 import TableOptionButton from '@/components/custom/TableRowActionButton';
 import { Task } from '@/types/task';
-import { prisma } from '@/db';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getTaskCached } from '@/actions/getTasks';
