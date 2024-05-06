@@ -1,5 +1,5 @@
 import { prisma } from '@/db';
-import AddEditForm from '../add-edit-form';
+import AddEditForm from '../../../components/custom/AddEditForm';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import {
 	Breadcrumb,

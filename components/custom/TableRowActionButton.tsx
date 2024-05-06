@@ -19,7 +19,7 @@ interface Props {
 	id: string;
 }
 
-const TableOptionButton: React.FC<Props> = ({ id }) => {
+const TableRowActionButton: React.FC<Props> = ({ id }) => {
 	const router = useRouter();
 
 	return (
@@ -56,4 +56,4 @@ const TableOptionButton: React.FC<Props> = ({ id }) => {
 	);
 };
 
-export default TableOptionButton;
+export default TableRowActionButton;

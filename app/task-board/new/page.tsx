@@ -1,4 +1,4 @@
-import AddEditForm from '../add-edit-form';
+import AddEditForm from '../../../components/custom/AddEditForm';
 import {
 	Breadcrumb,
 	BreadcrumbItem,

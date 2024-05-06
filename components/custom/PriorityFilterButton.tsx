@@ -27,7 +27,7 @@ export default function PriorityFilterButton() {
 			}}
 		>
 			<SelectTrigger className="w-[180px]">
-				<SelectValue placeholder="Filter" />
+				<SelectValue placeholder="Priority" />
 			</SelectTrigger>
 			<SelectContent>
 				<SelectGroup>

@@ -1,15 +1,15 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUp, ArrowDown, ArrowRight, Circle, CircleCheck, CircleHelp, CircleX, Timer } from 'lucide-react';
-import TableOptionButton from '@/app/task-board/table-option-button';
+import TableOptionButton from '@/components/custom/TableRowActionButton';
 import { Task } from '@/types/task';
 import { prisma } from '@/db';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { getTaskCached } from '@/actions/getTasks';
-import { StatusFilterButton } from './status-filter-button';
+import { StatusFilterButton } from './StatusFilterButton';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import PriorityFilterButton from './priority-filter-button';
+import PriorityFilterButton from './PriorityFilterButton';
 
 export default async function TaskTable({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
 	const tasks = await getTaskCached(searchParams);

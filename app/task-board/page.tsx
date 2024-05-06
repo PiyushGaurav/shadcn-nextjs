@@ -1,4 +1,4 @@
-import TaskTable from './task-table';
+import TaskTable from '../../components/custom/TaskTable';
 import {
 	Breadcrumb,
 	BreadcrumbItem,

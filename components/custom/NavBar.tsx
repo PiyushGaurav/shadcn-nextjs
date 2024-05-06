@@ -11,12 +11,13 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
-import ThemeButton from './theme-button';
+import ThemeButton from './ThemeButton';
+import { Icons } from '../Icons';
 export default function NavBar() {
 	return (
 		<NavigationMenu className="flex justify-between max-w-full py-4 px-16 text-center border-b-2 border-inherit">
 			<Link href="/" legacyBehavior passHref>
-				<h1 className="font-bold text-xl">shadcn/ui</h1>
+				<Icons.logo className="h-10 w-10" />
 			</Link>
 			<NavigationMenuList>
 				<NavigationMenuItem className="ml-2">
