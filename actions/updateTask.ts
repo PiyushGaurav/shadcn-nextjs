@@ -21,8 +21,8 @@ export default async function updateTask(id: string | undefined, data: FormData)
 				priority
 			}
 		});
-	} catch (error) {
-		return error;
+	} catch (e) {
+		return { error: e };
 	}
 
 	revalidatePath('/task-board', 'layout');

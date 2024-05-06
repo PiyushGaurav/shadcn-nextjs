@@ -5,6 +5,7 @@ import {
 	BreadcrumbItem,
 	BreadcrumbLink,
 	BreadcrumbList,
+	BreadcrumbPage,
 	BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
 import { usePathname } from 'next/navigation';
@@ -28,11 +29,22 @@ const RootLayout: React.FC<Props> = props => {
 					<BreadcrumbItem>
 						<BreadcrumbLink href="/">Home</BreadcrumbLink>
 					</BreadcrumbItem>
-					{pathItems.map(item => {
+					{pathItems.map((item, index) => {
 						let name = item.name.replace('-', ' ');
 						name = name.replace(/(?:^|\s)\S/g, function (a) {
 							return a.toUpperCase();
 						});
+
+						if (index == pathItems.length - 1) {
+							return (
+								<>
+									<BreadcrumbSeparator />
+									<BreadcrumbItem>
+										<BreadcrumbPage>{name}</BreadcrumbPage>
+									</BreadcrumbItem>
+								</>
+							);
+						}
 						return (
 							<>
 								<BreadcrumbSeparator />

@@ -11,8 +11,8 @@ export default async function deleteTask(id: string) {
 				id: id
 			}
 		});
-	} catch (error) {
-		return error;
+	} catch (e) {
+		return { error: e };
 	}
 
 	revalidatePath('/task-board', 'layout');

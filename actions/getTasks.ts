@@ -3,7 +3,7 @@ import { cache } from 'react';
 import { revalidatePath } from 'next/cache';
 import { Task } from '@/types/task';
 
-const getTasks = async function (searchParams: { [key: string]: string | undefined }): Promise<Task[]> {
+const getTasks = async function (searchParams: { [key: string]: string | undefined }) {
 	let tasks = [];
 
 	// let filterCondition: { priority: string }[] = [];
@@ -24,8 +24,8 @@ const getTasks = async function (searchParams: { [key: string]: string | undefin
 		} else {
 			tasks = await prisma.task.findMany();
 		}
-	} catch (error) {
-		return error;
+	} catch (e) {
+		return { error: e };
 	}
 
 	revalidatePath('/task-board', 'layout');

@@ -10,7 +10,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import PriorityFilterButton from './PriorityFilterButton';
 
 export default async function TaskTable({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
-	const tasks = await getTaskCached(searchParams);
+	const tasks: Task[] | { error: any } = await getTaskCached(searchParams);
 
 	const renderStatusIcon = (status: string | null) => {
 		switch (status) {
@@ -48,7 +48,7 @@ export default async function TaskTable({ searchParams }: { searchParams: { [key
 				</Link>
 			</div>
 			<div className="border rounded-md my-4">
-				{tasks.length == 0 ? (
+				{Array.isArray(tasks) && tasks.length == 0 ? (
 					<p className="p-4 text-center">No Task Found! Try to add more Task.</p>
 				) : (
 					<Table>
@@ -64,28 +64,29 @@ export default async function TaskTable({ searchParams }: { searchParams: { [key
 						</TableHeader>
 
 						<TableBody>
-							{tasks.map(({ id, title, status, priority }: Task) => (
-								<TableRow key={title}>
-									<TableCell>
-										<div className="flex gap-2 items-center">{title}</div>
-									</TableCell>
-									<TableCell>
-										<div className="flex gap-2 items-center">
-											{renderStatusIcon(status)}
-											{status}
-										</div>
-									</TableCell>
-									<TableCell>
-										<div className="flex gap-2 items-center">
-											{renderPriorityIcon(priority)}
-											{priority}
-										</div>
-									</TableCell>
-									<TableCell className="flex gap-4 items-center justify-end w-max-[50x]">
-										<TableOptionButton id={id} />
-									</TableCell>
-								</TableRow>
-							))}
+							{Array.isArray(tasks) &&
+								tasks?.map(({ id, title, status, priority }: Task) => (
+									<TableRow key={title}>
+										<TableCell>
+											<div className="flex gap-2 items-center">{title}</div>
+										</TableCell>
+										<TableCell>
+											<div className="flex gap-2 items-center">
+												{renderStatusIcon(status)}
+												{status}
+											</div>
+										</TableCell>
+										<TableCell>
+											<div className="flex gap-2 items-center">
+												{renderPriorityIcon(priority)}
+												{priority}
+											</div>
+										</TableCell>
+										<TableCell className="flex gap-4 items-center justify-end w-max-[50x]">
+											<TableOptionButton id={id} />
+										</TableCell>
+									</TableRow>
+								))}
 						</TableBody>
 					</Table>
 				)}
