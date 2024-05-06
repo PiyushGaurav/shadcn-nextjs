@@ -15,10 +15,8 @@ interface Props {
 
 const RootLayout: React.FC<Props> = props => {
 	const paths = usePathname();
-	console.log(paths);
 	const pathNames = paths.split('/').filter(path => path);
 	const pathItems = pathNames.map((path, i) => ({
-		// Optionally you can capitalize the first letter here
 		name: path,
 		path: pathNames.slice(0, i + 1).join('/')
 	}));

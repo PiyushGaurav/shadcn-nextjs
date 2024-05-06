@@ -5,6 +5,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import NavBar from '@/components/custom/NavBar';
 import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,6 +25,7 @@ const RootLayout: React.FC<Props> = props => {
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<NavBar />
 					{props.children}
+					<Toaster />
 				</ThemeProvider>
 			</body>
 		</html>
