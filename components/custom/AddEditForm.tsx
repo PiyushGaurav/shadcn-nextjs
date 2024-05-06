@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { Task } from '@/types/task';
 import createTask from '@/actions/createTask';
 import updateTask from '@/actions/updateTask';
+import FormSubmitButton from './FormSubmitButton';
 
 type ThisProp = {
 	data?: Task | null | undefined;
@@ -75,7 +76,7 @@ const AddEditForm: React.FC<ThisProp> = props => {
 						Cancel
 					</Button>
 				</Link>
-				<Button type="submit">Save</Button>
+				<FormSubmitButton />
 			</div>
 		</form>
 	);

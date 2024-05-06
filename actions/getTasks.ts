@@ -1,5 +1,5 @@
-import { prisma } from "@/db";
-import { cache } from "react";
+import { prisma } from '@/db';
+import { cache } from 'react';
 import { revalidatePath } from 'next/cache';
 
 async function getTasks(searchParams: { [key: string]: string | undefined }) {
@@ -13,21 +13,22 @@ async function getTasks(searchParams: { [key: string]: string | undefined }) {
 	// 	});
 	// }
 
-
-	if (!(searchParams.priority == undefined && searchParams.status == undefined)) {
-		tasks = await prisma.task.findMany({
-			where: {
-				AND: [
-					{ priority: searchParams.priority },
-					{ status: searchParams.status }
-				],
-			}
-		});
-	} else {
-		tasks = await prisma.task.findMany();
+	try {
+		if (!(searchParams.priority == undefined && searchParams.status == undefined)) {
+			tasks = await prisma.task.findMany({
+				where: {
+					AND: [{ priority: searchParams.priority }, { status: searchParams.status }]
+				}
+			});
+		} else {
+			tasks = await prisma.task.findMany();
+		}
+	} catch (error) {
+		return error;
 	}
+
 	revalidatePath('/task-board', 'layout');
 	return tasks;
 }
 
-export const getTaskCached = cache(getTasks)
+export const getTaskCached = cache(getTasks);

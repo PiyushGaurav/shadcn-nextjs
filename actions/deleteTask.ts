@@ -4,10 +4,16 @@ import { prisma } from '@/db';
 import { revalidatePath } from 'next/cache';
 export default async function deleteTask(id: string) {
 	'use server';
-	await prisma.task.delete({
-		where: {
-			id: id
-		}
-	});
+
+	try {
+		await prisma.task.delete({
+			where: {
+				id: id
+			}
+		});
+	} catch (error) {
+		return error;
+	}
+
 	revalidatePath('/task-board', 'layout');
 }

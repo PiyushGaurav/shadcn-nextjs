@@ -13,13 +13,18 @@ export default async function createTask(data: FormData) {
 		throw new Error('Invalid Title');
 	}
 
-	await prisma.task.create({
-		data: {
-			title,
-			status,
-			priority
-		}
-	});
+	try {
+		await prisma.task.create({
+			data: {
+				title,
+				status,
+				priority
+			}
+		});
+	} catch (error) {
+		return error;
+	}
+
 	revalidatePath('/task-board', 'layout');
 	redirect('/task-board');
 }
