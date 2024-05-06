@@ -33,7 +33,7 @@ const AddEditForm: React.FC<ThisProp> = props => {
 		<form action={onSubmit} className="grid gap-4 py-10">
 			<div className="grid grid-cols-4 items-center gap-4">
 				<Label htmlFor="title">Title</Label>
-				<Input id="title" name="title" defaultValue={props.data?.title} className="col-span-3" />
+				<Input id="title" name="title" defaultValue={props.data?.title} className="col-span-3" required />
 			</div>
 			<div className="grid grid-cols-4 items-center gap-4">
 				<Label htmlFor="status">Status</Label>
